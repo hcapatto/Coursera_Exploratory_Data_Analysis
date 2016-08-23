@@ -114,4 +114,75 @@ g+geom_point(color="pink",size=4,alpha=1/2)
 #the argument color set equal to drv. Note that you MUST use the function aes since the color of
 #the points is data dependent and not a constant as it was in the previous example.
 
+g + geom_point(aes(color = drv), size = 4, alpha = 1/2)
+
+#Now we'll practice modifying labels. Again, we'll use g and
+#add to it calls to 3 functions. First, add a call to
+#geom_point with an argument making the color dependent on
+#the drv type (as we did in the previous example). Second,
+#add a call to the function labs with the argument title set
+#equal to "Swirl Rules!". Finally, add a call to labs with 2
+#arguments, one setting x equal to "Displacement" and the
+#other setting y equal to "Hwy Mileage".
+
+g + geom_point(aes(color = drv)) 
++ labs(title="Swirl Rules!") 
++ labs(x="Displacement", y="Hwy Mileage")
+
+#Note that you could have combined the two calls to the
+#function labs in the previous example. Now we'll practice
+#customizing the geom_smooth calls. Use g and add to it a
+#call to geom_point setting the color to drv type (remember
+#to use the call to the aes function), size set to 2 and
+#alpha to 1/2. Then add a call to geom_smooth with 4
+#arguments. Set size equal to 4, linetype to 3, method to
+#"lm", and se to FALSE.
+
+g + geom_point(aes(color = drv),size=2, alpha = 1/2) + geom_smooth(size=4,linetype=3,method = "lm", se=FALSE)
+
+#What did these arguments do? The method specified a linear
+#regression (note the negative slope indicating that the
+#bigger the displacement the lower the gas mileage), the
+#linetype specified that it should be dashed (not
+#continuous), the size made the dashes big, and the se flag
+#told ggplot to turn off the gray shadows indicating standard
+#errors (confidence intervals).
+
+#Finally, let's do a simple plot using the black and white
+#theme, theme_bw. Specify g and add a call to the function
+#geom_point with the argument setting the color to the drv
+#type. Then add a call to the function theme_bw with the
+#argument base_family set equal to "Times". See if you notice
+#the difference.
+
+g + geom_point(aes(color = drv))
++theme_bw(base_family = "Times")
+
+g+geom_line()+ylim(-3,3)
+
+g+geom_line()+coord_cartesian(ylim=c(-3,3))
+
+#Start by creating the graphical object g by assigning to it
+#a call to ggplot with 2 arguments. The first is the dataset
+#and the second is a call to the function aes. This call will
+#have 3 arguments, x set equal to displ, y set equal to hwy,
+#and color set equal to factor(year). This last will allow us
+#to distinguish between the two manufacturing years (1999 and
+#2008) in our data.
+
+
+#passos para montagem de um gráfico
+
+g <- ggplot(mpg,aes(x=displ,y=hwy,color=factor(year)))
+
+g+geom_point()+facet_grid(drv~cyl,margins=TRUE)
+
+g+geom_point()+facet_grid(drv~cyl,margins=TRUE)
++geom_smooth(size=2,color="black",method = "lm", se=FALSE)
+
+g+geom_point()
++facet_grid(drv~cyl,margins=TRUE)
++geom_smooth(size=2,color="black",method = "lm", se=FALSE)
++labs(x="Displacement",y="Highway Mileage",title="Swirl Rules!")
+
 
